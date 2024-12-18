@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+<!--    <changeSet id="1" author="mazgi">-->
+<!--        <insert tableName="librarian">-->
+<!--            <column name="id" value="1"/>-->
+<!--            <column name="username" value="admin"/>-->
+<!--            <column name="password" value="$2a$16$WVCU44XmY3wL.dHozA3zteDK18AB1TnGp3DByOxUciwI4TTCPVWBa"/>-->
+<!--            <column name="work_start" value="09:00:00"/>-->
+<!--            <column name="work_end" value="18:00:00"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+
+</databaseChangeLog>
