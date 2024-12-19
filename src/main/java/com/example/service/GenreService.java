@@ -1,9 +1,9 @@
 package com.example.service;
 
 import com.example.dto.ApiResponse;
-import com.example.dto.genre.GenreRecord;
-import com.example.dto.genre.GenreResponseRecord;
-import com.example.dto.genre.GenreUpdateRecord;
+import com.example.dto.genre.GenreRequestDTO;
+import com.example.dto.genre.GenreResponseDTO;
+import com.example.dto.genre.GenreUpdateDTO;
 import com.example.entity.GenreEntity;
 import com.example.exception.ApiException;
 import com.example.mapper.GenreMapper;
@@ -21,7 +21,7 @@ public class GenreService  {
 
 
     // Genre create
-    public ApiResponse<GenreResponseRecord> create(GenreRecord dto) {
+    public ApiResponse<GenreResponseDTO> create(GenreRequestDTO dto) {
         Optional<GenreEntity> optionalGenre = genreRepository.findByTitle(dto.title());
         if (optionalGenre.isPresent()) {
             return new ApiResponse<>("Genre already exists " + dto.title(), 400, true);
@@ -32,7 +32,7 @@ public class GenreService  {
 
 
     // Genre update
-    public ApiResponse<GenreResponseRecord> update(GenreUpdateRecord dto) {
+    public ApiResponse<GenreResponseDTO> update(GenreUpdateDTO dto) {
         getGenreId(dto.id());
         GenreEntity genreEntity = genreRepository.save(genreMapper.toEntity(dto));
         return new ApiResponse<>(200, false, genreMapper.toDto(genreEntity));
@@ -48,13 +48,13 @@ public class GenreService  {
 
 
     // Genre get id
-    public ApiResponse<GenreResponseRecord> getId(Long id) {
+    public ApiResponse<GenreResponseDTO> getId(Long id) {
         return new ApiResponse<>(200, false, genreMapper.toDto(getGenreId(id)));
     }
 
 
     // Genre get all
-    public ApiResponse<List<GenreResponseRecord>> getAll() {
+    public ApiResponse<List<GenreResponseDTO>> getAll() {
         List<GenreEntity> entityList = genreRepository.findAll();
         return new ApiResponse<>(200, false, genreMapper.toDto(entityList));
     }

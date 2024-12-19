@@ -1,7 +1,8 @@
 package com.example.dto.author;
 
-public record AuthorUpdateRecord(
+public record AuthorResponseDTO(
         Long id,
         String firstName,
         String lastName) {
 }
+

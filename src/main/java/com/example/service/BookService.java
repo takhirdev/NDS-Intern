@@ -1,9 +1,9 @@
 package com.example.service;
 
 import com.example.dto.ApiResponse;
-import com.example.dto.book.BookRecord;
-import com.example.dto.book.BookResponseRecord;
-import com.example.dto.book.BookUpdateRecord;
+import com.example.dto.book.BookRequestDTO;
+import com.example.dto.book.BookResponseDTO;
+import com.example.dto.book.BookUpdateDTO;
 import com.example.entity.BookEntity;
 import com.example.exception.ApiException;
 import com.example.mapper.BookMapper;
@@ -23,7 +23,7 @@ public class BookService {
     private final GenreService genreService;
 
     // Book create
-    public ApiResponse<BookResponseRecord> create(BookRecord dto) {
+    public ApiResponse<BookResponseDTO> create(BookRequestDTO dto) {
 
         authorService.getAuthorId(dto.authorId());
         genreService.getGenreId(dto.genreId());
@@ -34,7 +34,7 @@ public class BookService {
 
 
     // Book update
-    public ApiResponse<BookResponseRecord> update(BookUpdateRecord dto) {
+    public ApiResponse<BookResponseDTO> update(BookUpdateDTO dto) {
 
         getBookId(dto.id());
         authorService.getAuthorId(dto.authorId());
@@ -54,13 +54,13 @@ public class BookService {
 
 
     // Book get id
-    public ApiResponse<BookResponseRecord> getId(Long id) {
+    public ApiResponse<BookResponseDTO> getId(Long id) {
         return new ApiResponse<>(200, false, bookMapper.toDto(getBookId(id)));
     }
 
 
     // Book get all
-    public ApiResponse<List<BookResponseRecord>> getAll() {
+    public ApiResponse<List<BookResponseDTO>> getAll() {
         List<BookEntity> entityList = bookRepository.findAll();
         return new ApiResponse<>(200, false, bookMapper.toDto(entityList));
     }

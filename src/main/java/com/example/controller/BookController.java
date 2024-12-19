@@ -2,9 +2,9 @@ package com.example.controller;
 
 
 import com.example.dto.ApiResponse;
-import com.example.dto.book.BookRecord;
-import com.example.dto.book.BookResponseRecord;
-import com.example.dto.book.BookUpdateRecord;
+import com.example.dto.book.BookRequestDTO;
+import com.example.dto.book.BookResponseDTO;
+import com.example.dto.book.BookUpdateDTO;
 import com.example.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +20,13 @@ public class BookController {
 
     // Book create
     @PostMapping()
-    public ResponseEntity<ApiResponse<BookResponseRecord>> create(@RequestBody BookRecord dto) {
+    public ResponseEntity<ApiResponse<BookResponseDTO>> create(@RequestBody BookRequestDTO dto) {
         return ResponseEntity.ok().body(bookService.create(dto));
     }
 
     // Book update
     @PutMapping()
-    public ResponseEntity<ApiResponse<BookResponseRecord>> update(@RequestBody BookUpdateRecord dto) {
+    public ResponseEntity<ApiResponse<BookResponseDTO>> update(@RequestBody BookUpdateDTO dto) {
         return ResponseEntity.ok().body(bookService.update(dto));
     }
 
@@ -38,13 +38,13 @@ public class BookController {
 
     // Book get id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<BookResponseRecord>> getId(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<BookResponseDTO>> getId(@PathVariable Long id) {
         return ResponseEntity.ok().body(bookService.getId(id));
     }
 
     // Book get all
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<BookResponseRecord>>> getId() {
+    public ResponseEntity<ApiResponse<List<BookResponseDTO>>> getId() {
         return ResponseEntity.ok().body(bookService.getAll());
     }
 

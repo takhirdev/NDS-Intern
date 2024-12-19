@@ -1,9 +1,9 @@
 package com.example.controller;
 
 import com.example.dto.ApiResponse;
-import com.example.dto.genre.GenreRecord;
-import com.example.dto.genre.GenreResponseRecord;
-import com.example.dto.genre.GenreUpdateRecord;
+import com.example.dto.genre.GenreRequestDTO;
+import com.example.dto.genre.GenreResponseDTO;
+import com.example.dto.genre.GenreUpdateDTO;
 import com.example.service.GenreService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,13 @@ public class GenreController {
 
     // Genre create
     @PostMapping()
-    public ResponseEntity<ApiResponse<GenreResponseRecord>> create(@RequestBody GenreRecord dto){
+    public ResponseEntity<ApiResponse<GenreResponseDTO>> create(@RequestBody GenreRequestDTO dto){
         return ResponseEntity.ok().body(genreService.create(dto));
     }
 
     // Genre update
     @PutMapping()
-    public ResponseEntity<ApiResponse<GenreResponseRecord>> update(@RequestBody GenreUpdateRecord dto){
+    public ResponseEntity<ApiResponse<GenreResponseDTO>> update(@RequestBody GenreUpdateDTO dto){
         return ResponseEntity.ok().body(genreService.update(dto));
     }
 
@@ -39,13 +39,13 @@ public class GenreController {
 
     // Genre get id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<GenreResponseRecord>> getId(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<GenreResponseDTO>> getId(@PathVariable Long id){
         return ResponseEntity.ok().body(genreService.getId(id));
     }
 
     // Genre get all
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<GenreResponseRecord>>> getId(){
+    public ResponseEntity<ApiResponse<List<GenreResponseDTO>>> getId(){
         return ResponseEntity.ok().body(genreService.getAll());
     }
 

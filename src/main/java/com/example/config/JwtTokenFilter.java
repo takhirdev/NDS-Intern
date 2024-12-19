@@ -1,7 +1,7 @@
 package com.example.config;
 
 import com.example.dto.ApiResponse;
-import com.example.util.JwtTokenUtil;
+import com.example.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,6 +23,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final CustomDetailService customDetailService;
+    private final JwtUtil jwtUtil;
 
     @Override
     protected boolean shouldNotFilter(@NonNull HttpServletRequest request) throws ServletException {
@@ -46,7 +47,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         final String token = authHeader.substring(7);
         String username;
         try {
-            username = JwtTokenUtil.decodeUsername(token);
+            username = jwtUtil.decodeUsername(token);
             if (username != null || SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = customDetailService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authToken =

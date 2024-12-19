@@ -1,9 +1,9 @@
 package com.example.service;
 
 import com.example.dto.ApiResponse;
-import com.example.dto.author.AuthorRecord;
-import com.example.dto.author.AuthorResponseRecord;
-import com.example.dto.author.AuthorUpdateRecord;
+import com.example.dto.author.AuthorRequestDTO;
+import com.example.dto.author.AuthorResponseDTO;
+import com.example.dto.author.AuthorUpdateDTO;
 import com.example.entity.AuthorEntity;
 import com.example.exception.ApiException;
 import com.example.mapper.AuthorMapper;
@@ -21,7 +21,7 @@ public class AuthorService {
     private AuthorMapper authorMapper;
 
     // Author create
-    public ApiResponse<AuthorResponseRecord> create(AuthorRecord dto) {
+    public ApiResponse<AuthorResponseDTO> create(AuthorRequestDTO dto) {
         Optional<AuthorEntity> optionalAuthor = authorRepository.findByFirstNameAndLastName(dto.firstName(), dto.lastName());
         if (optionalAuthor.isPresent()) {
             return new ApiResponse<>("Author already exists " + dto.firstName() + " " + dto.lastName(), 404, true);
@@ -32,7 +32,7 @@ public class AuthorService {
 
 
     // Author update
-    public ApiResponse<AuthorResponseRecord> update(AuthorUpdateRecord dto) {
+    public ApiResponse<AuthorResponseDTO> update(AuthorUpdateDTO dto) {
         getAuthorId(dto.id());
         AuthorEntity genreEntity = authorRepository.save(authorMapper.toEntity(dto));
         return new ApiResponse<>(200, false, authorMapper.toDto(genreEntity));
@@ -48,13 +48,13 @@ public class AuthorService {
 
 
     // Author get id
-    public ApiResponse<AuthorResponseRecord> getId(Long id) {
+    public ApiResponse<AuthorResponseDTO> getId(Long id) {
         return new ApiResponse<>(200, false, authorMapper.toDto(getAuthorId(id)));
     }
 
 
     // Author get all
-    public ApiResponse<List<AuthorResponseRecord>> getAll() {
+    public ApiResponse<List<AuthorResponseDTO>> getAll() {
         List<AuthorEntity> entityList = authorRepository.findAll();
         return new ApiResponse<>(200, false, authorMapper.toDto(entityList));
     }

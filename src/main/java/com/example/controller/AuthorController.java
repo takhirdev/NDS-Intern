@@ -1,9 +1,9 @@
 package com.example.controller;
 
 import com.example.dto.ApiResponse;
-import com.example.dto.author.AuthorRecord;
-import com.example.dto.author.AuthorResponseRecord;
-import com.example.dto.author.AuthorUpdateRecord;
+import com.example.dto.author.AuthorRequestDTO;
+import com.example.dto.author.AuthorResponseDTO;
+import com.example.dto.author.AuthorUpdateDTO;
 import com.example.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +19,13 @@ public class AuthorController {
 
     // Author create
     @PostMapping()
-    public ResponseEntity<ApiResponse<AuthorResponseRecord>> create(@RequestBody AuthorRecord dto) {
+    public ResponseEntity<ApiResponse<AuthorResponseDTO>> create(@RequestBody AuthorRequestDTO dto) {
         return ResponseEntity.ok().body(authorService.create(dto));
     }
 
     // Author update
     @PutMapping()
-    public ResponseEntity<ApiResponse<AuthorResponseRecord>> update(@RequestBody AuthorUpdateRecord dto) {
+    public ResponseEntity<ApiResponse<AuthorResponseDTO>> update(@RequestBody AuthorUpdateDTO dto) {
         return ResponseEntity.ok().body(authorService.update(dto));
     }
 
@@ -37,13 +37,13 @@ public class AuthorController {
 
     // Author get id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<AuthorResponseRecord>> getId(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<AuthorResponseDTO>> getId(@PathVariable Long id) {
         return ResponseEntity.ok().body(authorService.getId(id));
     }
 
     // Author get all
     @GetMapping()
-    public ResponseEntity<ApiResponse<List<AuthorResponseRecord>>> getId() {
+    public ResponseEntity<ApiResponse<List<AuthorResponseDTO>>> getId() {
         return ResponseEntity.ok().body(authorService.getAll());
     }
 }
