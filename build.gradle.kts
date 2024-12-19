@@ -35,6 +35,10 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.12.6")
 	implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.7.0")
+
+	implementation("org.mapstruct:mapstruct:1.5.5.Final") // MapStruct kutubxonasi
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
+
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	annotationProcessor("org.projectlombok:lombok")
